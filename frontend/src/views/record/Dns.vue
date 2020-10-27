@@ -36,6 +36,7 @@
       </div>
 
       <div class="table-operator">
+        <a-button type="primary" @click="handleRefreshAll">{{ $t('refresh All') }}</a-button>
         <a-button type="primary" @click="handleDeleteAll">{{ $t('Delete All') }}</a-button>
         <a-button type="primary" @click="handleDeleteSelect" :disabled="selectedRowKeys.length === 0">{{ $t('Delete Select') }}</a-button>
         <a-button type="dashed" @click="tableOption">{{ optionAlertShow && $t('Close') || $t('Open') }} {{ $t('Batch') }}</a-button>
@@ -198,6 +199,9 @@
           setTimeout(() => {
             this.$refs.table.refresh() // refresh() 不传参默认值 false 不刷新到分页第一页
           }, 1000)
+        },
+        handleRefreshAll () {
+            this.$refs.table.refresh()
         },
         handleDeleteSelect () {
           var ids = this.selectedRows.map(n => n.id)
